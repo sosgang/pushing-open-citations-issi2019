@@ -11,7 +11,7 @@ The citations count are taken from two different sources:
 
 **Note:** All the information are included/calculated from the last COCI dataset dump available at the OpenCitations website:
 http://opencitations.net/download#coci      
-
+<br><br><br>
 ## publishers_cits.csv
 Taken in consideration the same previous sources as citation count values. In this file this count is calculated for each different publisher.
 ### Columns:
@@ -23,7 +23,7 @@ Taken in consideration the same previous sources as citation count values. In th
 
 **Note:** All the information are included/calculated from the last COCI dataset dump available at the OpenCitations website:
 http://opencitations.net/download#coci 
-
+<br><br><br>
 ## 20publishers_cr.csv
 This file contains the number of: open,limited, and closed, DOI resources having a reference list inside Crossref.
 To retrieve such data we used the Crossref API. For instance, the following call retrieves the number of 'closed' items having a reference list and 'Elsevir' as publisher.   
