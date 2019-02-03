@@ -92,6 +92,22 @@ def plotBars(data,opt = {}, sortit= False, logit= False):
             if bars_legend[bl_index] in opt['color']:
                 my_color = opt['color'][bars_legend[bl_index]]
 
+        xticks_fontsize = 10
+        if 'xticks_fontsize' in opt:
+            xticks_fontsize = opt['xticks_fontsize']
+
+        yticks_fontsize = 10
+        if 'yticks_fontsize' in opt:
+            yticks_fontsize = opt['yticks_fontsize']
+
+        ylabel_fontsize = 10
+        if 'ylabel_fontsize' in opt:
+            ylabel_fontsize = opt['ylabel_fontsize']
+
+        xlabel_fontsize = 10
+        if 'xlabel_fontsize' in opt:
+            xlabel_fontsize = opt['xlabel_fontsize']
+
         rects1 = ax.bar(starting_from, tuple(y_vals), width, color=my_color, label= bars_legend[bl_index])
         if 'bar_val' in opt:
             for rect in rects1:
@@ -123,7 +139,22 @@ def plotBars(data,opt = {}, sortit= False, logit= False):
                     val = round(val,round_val)
                     suf = 'K'
 
-                plt.text(rect.get_x() + rect.get_width()/2.0, height, '%s%s%s' % (pre,str(val),suf), ha='center', va='bottom')
+                val_on_top = '%s%s%s' % (pre,str(val),suf)
+
+                size_of_space = len(val_on_top) // 2
+                str_space = ""
+                for val in range(0,size_of_space):
+                    str_space = str_space + " "
+
+                after_space = ""
+                before_space = str_space
+                if bl_index % 2 == 0:
+                    after_space = str_space
+                    before_space = ""
+
+                val_on_top = before_space+val_on_top+after_space
+
+                plt.text(rect.get_x() + rect.get_width()/2.0, height, val_on_top , fontsize=yticks_fontsize, ha='center', va='bottom')
 
         if 'multi' in opt:
             if opt['multi'] == True:
@@ -144,10 +175,13 @@ def plotBars(data,opt = {}, sortit= False, logit= False):
         plt.yscale('log')
 
     if 'ylabel' in opt:
-        plt.ylabel(opt['ylabel'])
+        plt.ylabel(opt['ylabel'],{'fontsize': ylabel_fontsize})
 
     if 'xlabel' in opt:
-        plt.xlabel(opt['xlabel'])
+        plt.xlabel(opt['xlabel'],{'fontsize': xlabel_fontsize})
+
+    ax.tick_params(axis = 'x', which = 'major', labelsize = xticks_fontsize)
+    ax.tick_params(axis = 'y', which = 'major', labelsize = yticks_fontsize)
 
     plt.rcParams['figure.figsize'] = (14,8)
 
